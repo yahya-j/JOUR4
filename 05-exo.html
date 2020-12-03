@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+
+    <script>
+        let requete = new XMLHttpRequest();
+        requete.open("get", "https://jsonplaceholder.typicode.com/comments");
+        requete.onload = function(){
+            let responseServeur = requete.responseText;
+            console.log(requete.responseText);
+            
+            let responseJson = JSON.parse(requete.responseText);
+            console.log(responseJson);
+            let html = responseJson.map(function(item){
+                return `
+                <section>
+                    <p>${item.name}</p>
+                    
+                    <p>${item.email}</p>
+                    <p>${item.body}</p>
+                    <hr>
+                </section>
+                
+                `;
+            });
+            document.querySelector("div").innerHTML = html.join("");
+        };
+
+        requete.send();
+    
+            
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Avant ES6 et l'ajout des mots class/constructor/extends/super
+        //On faisait déjà de la POO js de la manière suivante :
+
+        //Pour créer un classe, on utilisait des fonctions
+        function Forme(nbCote, couleur){
+            this.nbCote = nbCote;
+            this.couleur = couleur;
+            this.methode1 = function(){}
+
+        }
+        console.log(Forme);
+        /* ES6
+            class Forme{
+                constructor(nbCote , couleur ){
+                    this.nbCote = nbCote;
+                    this.couleur = couleur
+                }
+            }
+        */
+        //En js une fonction est un objet => propriétés et méthodes
+        //Automatiquement => propriétés renvoi à .prototype
+        //2 manières d'ajouter des méthodes :
+        //----->Ajouter directement ds la fction constructrice
+        //----->Ajouter ds la prototype de la class Forme.prototype.methode2 = function(){}
+        Forme.prototype.methode2 = function(){}
+       Forme.methode3 = function(){} // créer une méthode static de class
+    </script>
+</body>
+</html>

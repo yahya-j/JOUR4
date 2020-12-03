@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*cas pratique : 
+
+Créer une nouveau fichier 01-exo.html 
+
+ce fichier contient une class Forme 
+cette class dispose de deux attributs : nbDeCote / couleur
+cette class dispose d'une fonction constructrice qui permet d'initialiser les deux attributs 
+cette class dispose de setter et getter 
+les setter vérifie que nbCote est un number sinon message erreur 
+les setter vérifie que couleur est un string sinon message erreur 
+
+ce fichie cotient ue autre class Rectangle qui hérite de Forme 
+cette class (Rectangle) dispose d'une méthode description 
+console log "je suis un Rectangle à 4 cotés"
+
+instancier la class Rectangle et utiliser la méthode description */
+
+        class Forme {
+            nbCote;
+            couleur;
+        
+        constructor(nbCote, couleur){
+            this.setNumber(nbCote);
+            this.setCouleur(couleur);
+        }
+
+        setNumber(nbCote){
+           /* if(typeof(nbCote) == "number" ){
+                    this.nbCote = nbCote
+                }else {
+                    throw new Error("Ce n'est pas le bon format");
+                }
+            }*/
+            //!isNaN(nbCote)
+            //Number.isInteger(nbCote)
+            //AVEC REGEX :
+            let patterNombre = /^[0-9]{1,}$/;
+            if(patterNombre.test(nbCote)){
+                this.nbCote = nbCote
+            }else {
+                throw new Error("Ce n'est pas le bon format");
+            }
+        }
+        setCouleur(couleur){
+            if(typeof(couleur) == "string" && couleur.length > 0){
+                    this.couleur = couleur
+                }else {
+                    throw new Error("Couleur non conforme")
+                }
+            }
+        
+        getNumber(){
+                return this.nbCote ;
+            }
+
+        getCouleur(){
+                return this.couleur ;
+            }
+
+        }
+        class Rectangle extends Forme{
+            description(){
+                console.log(`je suis un rectangle à ${this.nbCote} cotés`);
+            }
+        }
+        let a = new Rectangle(3, "rouge") ;
+        console.log(a);
+    </script>
+</body>
+</html>

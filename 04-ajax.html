@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div></div>
+
+    <script>
+        /*AJAX Asynchrone Javascript And XML
+        Ensemble de tchnos qui vont permettre au client (navigateur)
+        de faire des demandes au Serveur et de se rafraichir en partie
+        En 2020, plusieurs manières de faire de l'Ajax:
+        -new XMLHTTPRequest()
+        -fetch()
+        -JQuery => $.ajax()         //Librairie Tiers
+        -React Librairie => Axios   //Librairie Tiers
+
+        Première Manière :    */
+        let requete = new XMLHttpRequest();
+
+        //Faire une demande au serveur :
+        requete.open("get", "http://jsonplaceholder.typicode.com/posts");
+
+        //Ce que l'on va faire avec les données
+        requete.onload = function(){
+            console.log(requete.responseText);
+            let responseServeur = requete.responseText;
+
+            //Transformer la réponse qui est au format texte qui contient du json en un vrai json =>Tableau
+            let responseJson = JSON.parse(requete.responseText);
+            console.log(responseJson);
+            let html = responseJson.map(function(item){
+                return `
+                <article>
+                    <h2>${item.title}</h2>
+                    <p>${item.body}</p>
+                </article>
+                
+                `;
+            });
+            document.querySelector("div").innerHTML = html.join("");
+        };
+
+        //Envoyer une demande au serveur :
+        requete.send();
+
+      
+    </script>
+</body>
+</html>
